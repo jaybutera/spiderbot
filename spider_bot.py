@@ -10,12 +10,12 @@ num_motors = 8
 epochs = 50
 
 def fitness (v):
+    # Change the file path to wherever the spiderbot app is
     fitsFileName = "/Users/jaybutera/Documents/Unity/QuadBot/Assets/fitness.out"
     if(os.path.exists(fitsFileName)):
         os.remove(fitsFileName) #begin run without any fitness file already in the folder.
 
     weightsFileName = "/Users/jaybutera/Documents/Unity/QuadBot/Assets/ANN.out"
-    #weightsFileName = "ANN.out"
 
     np.savetxt(weightsFileName, v, delimiter=',')
 
@@ -30,6 +30,7 @@ def fitness (v):
 def perturb (v):
     x = np.copy(v)
 
+    # 5% chance to mutate every weight
     for i in range( x.shape[0] ):
         for j in range( x.shape[1] ):
             if random.random() < .05:
@@ -37,8 +38,8 @@ def perturb (v):
     return x
 
 def create_weights():
-    #numpy.random.normal(0.0, pow(num_sensors, - 0.5),(num_sensors, num_motors))
-    return np.random.rand(num_sensors, num_motors)
+    return numpy.random.normal(0.0, pow(num_sensors, - 0.5),(num_sensors, num_motors))
+    #return np.random.rand(num_sensors, num_motors)
 
 def plot_vec (v):
     plt.clf()
