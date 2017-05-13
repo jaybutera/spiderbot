@@ -41,7 +41,9 @@ def create_weights():
     return np.random.rand(num_sensors, num_motors)
 
 def plot_vec (v):
+    plt.clf()
     plt.plot(v)
+    plt.show()
 
 def generation ():
     p = create_weights()
@@ -68,8 +70,7 @@ def generation ():
         fits.append(p_fit)
         #-
 
-    plot_vec(fits)
+        #plot_vec(fits)
 
 
 generation()
-plt.show()
